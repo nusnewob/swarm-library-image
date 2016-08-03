@@ -20,9 +20,14 @@ if [ -z "$SWARM_ADVERTISE" ]; then
 fi
 
 # Look for Swarm subcommands.
-if [ "$1" = 'manage' ] || [ "$1" = 'join' ]; then
+if [ "$1" = 'manage' ]; then
     shift
-    set -- swarm $1 \
+    set -- swarm manage \
+        $SWARM_ADVERTISE \
+        "$@"
+elif [ "$1" = 'join' ]; then
+    shift
+    set -- swarm join \
         $SWARM_ADVERTISE \
         "$@"
 else
