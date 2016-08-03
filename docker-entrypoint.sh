@@ -15,7 +15,7 @@ if [ -z "$SWARM_ADVERTISE" ]; then
     exit 1
   fi
 
-  SWARM_ADVERTISE="--advertise=$SWARM_ADVERTISE_ADDRESS"
+  SWARM_ADVERTISE="--advertise=$SWARM_ADVERTISE_ADDRESS:4000"
   echo "==> Found address '$SWARM_ADVERTISE_ADDRESS' to advertise, setting advertise option..."
 fi
 
