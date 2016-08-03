@@ -19,18 +19,14 @@ if [ -z "$SWARM_ADVERTISE" ]; then
   echo "==> Found address '$SWARM_ADVERTISE_ADDRESS' to advertise, setting advertise option..."
 fi
 
-# If the user is trying to run Swarm directly with some arguments, then
-# pass them to Swarm.
-if [ "${1:0:1}" = '-' ]; then
-    set -- swarm "$@"
-fi
-
 # Look for Swarm subcommands.
 if [ "$1" = 'manage' ] || [ "$1" = 'join' ]; then
     shift
     set -- swarm $1 \
         $SWARM_ADVERTISE \
         "$@"
+else
+    set -- swarm "$@"
 fi
 
 exec "$@"
