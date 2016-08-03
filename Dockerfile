@@ -1,13 +1,15 @@
-FROM scratch
+FROM alpine:3.4
+RUN apk update && apk add curl
 
-COPY ./swarm /swarm
+COPY ./swarm /usr/local/bin/swarm
 COPY ./certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
-COPY ./tmp /tmp
 
 ENV SWARM_HOST :2375
 EXPOSE 2375
 
 VOLUME /.swarm
 
-ENTRYPOINT ["/swarm"]
-CMD ["--help"]
+COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+
+ENTRYPOINT ["docker-entrypoint.sh"]
+CMD ["help"]
