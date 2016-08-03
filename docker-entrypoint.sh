@@ -1,5 +1,4 @@
-#!/bin/bash -xe
-##!/bin/dumb-init /bin/sh
+#!/bin/dumb-init /bin/sh
 set -e
 
 # Note above that we run dumb-init as PID 1 in order to reap zombie processes
