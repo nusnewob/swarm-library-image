@@ -26,13 +26,11 @@ if [ "${1:0:1}" = '-' ]; then
 fi
 
 # Look for Swarm subcommands.
-if [ "$1" = 'manage' ] || [ "$1" = 'join'  ]; then
+if [ "$1" = 'manage' ] || [ "$1" = 'join' ]; then
     shift
     set -- swarm $1 \
         $SWARM_ADVERTISE \
         "$@"
-elif swarm --help "$1" 2>&1 | grep -q "swarm $1"; then
-    set -- swarm "$@"
 fi
 
 exec "$@"
