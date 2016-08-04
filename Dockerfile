@@ -24,7 +24,7 @@ COPY ./swarm /usr/local/bin/swarm
 COPY ./certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 
 ENV SWARM_HOST :2375
-ENV SWARM_ADVERTISE_PORT
+ENV SWARM_ADVERTISE_PORT 2375
 EXPOSE 2375
 EXPOSE 4000
 
