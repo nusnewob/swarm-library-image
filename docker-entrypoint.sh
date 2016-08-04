@@ -7,6 +7,10 @@ set -e
 # unclean termination of all our sub-processes.
 
 # Fix AWS ECS
+if [ -z "$SWARM_ADVERTISE_PORT" ]; then
+  SWARM_ADVERTISE_PORT=2375
+fi
+
 SWARM_ADVERTISE=
 if [ -z "$SWARM_ADVERTISE" ]; then
   SWARM_ADVERTISE_ADDRESS=$(curl 169.254.169.254/latest/meta-data/local-ipv4 2> /dev/null)
@@ -15,7 +19,7 @@ if [ -z "$SWARM_ADVERTISE" ]; then
     exit 1
   fi
 
-  SWARM_ADVERTISE="--advertise=$SWARM_ADVERTISE_ADDRESS:4000"
+  SWARM_ADVERTISE="--advertise=$SWARM_ADVERTISE_ADDRESS:$SWARM_ADVERTISE_PORT"
   echo "==> Found address '$SWARM_ADVERTISE_ADDRESS' to advertise, setting advertise option..."
 fi
 
